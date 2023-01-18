@@ -90,15 +90,15 @@ const AddGoats = () => {
         !motherTagNo ||
         !fatherTagNo
       ) {
+                 toast.error("Error occured");
         setError(true);
-        alert("err");
+        
       } else {
         fireDB.child("goat-test").push(newGoatData, (err: any) => {
           if (err) {
             toast.error(err);
           } else {
             toast.success("Goat Added Successfully");
-            alert("added");
           }
         });
         console.log(newGoatData);
@@ -118,6 +118,7 @@ const AddGoats = () => {
           dateOfBirth: null,
         });
       }
+                 toast.error("Error occured");
     } else if (howGoatObtained === "Purchased") {
       if (
         !tagNo ||
@@ -128,7 +129,6 @@ const AddGoats = () => {
         !ageOnPurchase
       ) {
         setError(true);
-        alert("err");
       } else {
         fireDB.child("goat-test").push(newGoatData, (err: any) => {
           if (err) {
