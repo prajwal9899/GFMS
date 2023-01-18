@@ -9,39 +9,44 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Homepage = () => {
   const [data, setData] = useState({});
+  const [male, setMale] = useState({});
+  const [female, setFemale] = useState(0);
   useEffect(() => {
     fireDB.child("goat-test").on("value", (snapshot) => {
       if (snapshot.val() !== null) {
         setData({ ...snapshot.val() });
+        const Male = Object.keys(snapshot.val()).filter((item) => {
+          return snapshot.val()[item].gender === "Male";
+        });
+        setMale(Male.length);
+
+        const Female = Object.keys(snapshot.val()).filter((item) => {
+          return snapshot.val()[item].gender === "Female";
+        });
+        setFemale(Female.length);
       } else {
         setData({});
       }
     });
   }, []);
 
-  const filterData = () => {
-    const res = Object.keys(data).filter((item) => {
-      return data[item].gender === "Female";
-    });
-    console.log(res, "res");
+  console.log(male,'male',female);
+  
+
+  const chartData = {
+    labels: ["Male", "Female"],
+    datasets: [
+      {
+        data: [male, female],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+      },
+    ],
   };
 
-  filterData();
-  const chartData = {
-    labels: ['Red', 'Green', 'Yellow'],
-    datasets : [{
-      data :[30,34,90,76],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-    
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-    }]
-  }
- 
-
-
   return (
-    <div style={{width:'300px'}}>
-      <Doughnut data={chartData}/>
+    <div style={{ width: "300px" }}>
+      <Doughnut data={chartData} />
     </div>
   );
 };

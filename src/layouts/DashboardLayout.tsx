@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
   MenuOutlined,
   UploadOutlined,
-  UserOutlined,
   VideoCameraOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 const { Header, Sider, Content } = Layout;
@@ -32,17 +33,6 @@ const DashboardLayout = () => {
 
   // console.log(windowWidth);
   return (
-    // <div className="flex">
-    //   <aside className="w-44 min-h-screen bg-white text-">
-    //     <Sidebar />
-    //   </aside>
-    //   <main
-    //     className="w-full col-span-3 bg-orange-500"
-    //     style={{ backgroundColor: "#f4f1f5" }}
-    //   >
-    //
-    //   </main>
-    // </div>
     <Layout>
       <Sider
         style={{
@@ -53,14 +43,7 @@ const DashboardLayout = () => {
           top: 0,
           bottom: 0,
         }}
-        trigger={React.createElement(collapsed ? MenuOutlined : MenuOutlined, {
-          className: "trigger",
-          style: {
-            fontSize: "25px",
-            // marginLeft: '20px'
-          },
-          onClick: () => setCollapsed(!collapsed),
-        })}
+        trigger={null}
         collapsible
         collapsed={collapsed}
       >
@@ -72,21 +55,25 @@ const DashboardLayout = () => {
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
+              icon: <HomeOutlined />,
               label: "Dashboard",
-              onClick: () => {navigate("/")}              
+              onClick: () => {
+                navigate("/");
+              },
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              onClick: () => navigate('/view-goats'),
+              onClick: () => navigate("/view-goats"),
               label: "View Goats",
             },
             {
               key: "3",
               icon: <UploadOutlined />,
               label: "Add Goats",
-              onClick: () => {navigate("/add-goats")}
+              onClick: () => {
+                navigate("/add-goats");
+              },
             },
           ]}
         />
