@@ -22,16 +22,15 @@ const DashboardLayout = () => {
   } = theme.useToken();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setWindowWidth(window.innerWidth);
-  //   }
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
 
-  //   // window.addEventListener('resize', handleResize);
-  //   // return () => window.removeEventListener('resize', handleResize);
-  // }, []);
+    // window.addEventListener('resize', handleResize);
+    // return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  // console.log(windowWidth);
   return (
     <Layout>
       <Sider
@@ -46,6 +45,7 @@ const DashboardLayout = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
+        collapsedWidth={windowWidth < 768 ? 0 : undefined}
       >
         <div className="logo" />
         <Menu
@@ -81,7 +81,7 @@ const DashboardLayout = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: collapsed ? "80px" : "200px",
+          marginLeft: windowWidth < 768 ? (collapsed ? "0px" : "200px") : (collapsed ? "80px" : "200px"),
           transition: "all 0.2s ease-in-out",
         }}
       >
