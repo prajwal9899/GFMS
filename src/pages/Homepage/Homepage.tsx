@@ -29,9 +29,7 @@ const Homepage = () => {
       }
     });
   }, []);
-
-  console.log(male,'male',female);
-  
+ 
 
   const chartData = {
     labels: ["Male", "Female"],

@@ -7,13 +7,14 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
   MenuOutlined,
+  UserAddOutlined,
   UploadOutlined,
   VideoCameraOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 const { Header, Sider, Content } = Layout;
- 
+
 const DashboardLayout = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -30,6 +31,12 @@ const DashboardLayout = () => {
     // window.addEventListener('resize', handleResize);
     // return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (windowWidth < 768) {
+      setCollapsed(true)
+    }
+  }, [windowWidth])
 
   return (
     <Layout>
@@ -58,21 +65,26 @@ const DashboardLayout = () => {
               icon: <HomeOutlined />,
               label: "Dashboard",
               onClick: () => {
-                navigate("/");
+                navigate("/")
+                windowWidth < 768 ? (setCollapsed(!collapsed)) : ''
               },
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              onClick: () => navigate("/view-goats"),
+              onClick: () => {
+                navigate("/view-goats")
+                windowWidth < 768 ? (setCollapsed(!collapsed)) : ''
+              },
               label: "View Goats",
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
+              icon: <UserAddOutlined />,
               label: "Add Goats",
               onClick: () => {
-                navigate("/add-goats");
+                navigate("/add-goats")
+                windowWidth < 768 ? (setCollapsed(!collapsed)) : ''
               },
             },
           ]}

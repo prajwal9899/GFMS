@@ -12,7 +12,7 @@ const AddGoats = () => {
   const [goat, setGoat] = useState({
     breed: "",
     tagNo: "",
-    gender: "Select Gender",
+    gender: "",
     weightOnPurchase: 0,
     weightOnBorn: 0,
     howGoatObtained: "",
@@ -63,7 +63,7 @@ const AddGoats = () => {
     //   return data[item].tagNo === fatherTagNo
     // })
 
-    
+
 
     const newGoatData = {
       breed: goat.breed,
@@ -90,9 +90,9 @@ const AddGoats = () => {
         !motherTagNo ||
         !fatherTagNo
       ) {
-                 toast.error("Error occured");
+        toast.error("Error occured");
         setError(true);
-        
+
       } else {
         fireDB.child("goat-test").push(newGoatData, (err: any) => {
           if (err) {
@@ -118,7 +118,7 @@ const AddGoats = () => {
           dateOfBirth: null,
         });
       }
-                 toast.error("Error occured");
+      toast.error("Error occured");
     } else if (howGoatObtained === "Purchased") {
       if (
         !tagNo ||
@@ -164,7 +164,7 @@ const AddGoats = () => {
     setGoat({ ...goat, [name]: value });
   };
 
-  
+
   return (
     <div className="md:col-span-2 md:mt-0">
       <ToastContainer />
@@ -179,7 +179,7 @@ const AddGoats = () => {
                 htmlFor="howGoatObtained"
                 className="block text-sm font-medium text-gray-700"
               >
-                Select how goat was obtained{" "}
+                Select how goat was obtained
                 <span className="text-red-600">*</span>
               </label>
               <select
@@ -189,6 +189,7 @@ const AddGoats = () => {
                 value={howGoatObtained || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
+                <option disabled value="">Select how goat was obtained</option>
                 <option>Born on farm</option>
                 <option>Purchased</option>
               </select>
@@ -208,6 +209,7 @@ const AddGoats = () => {
                 value={breed || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
+                <option disabled value="">Select Breed</option>
                 <option>Barbari</option>
                 <option>Osmanabadi</option>
                 <option>Sangamneri</option>
@@ -249,20 +251,10 @@ const AddGoats = () => {
                 value={gender || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
-                <option>Select Gender</option>
+                <option disabled value={''}>Select Gender</option>
                 <option>Male</option>
                 <option>Female</option>
               </select>
-              {/* {gender === "Select Gender" ? (
-                <span
-                  style={{ fontSize: "10px", marginLeft: "10px" }}
-                  className="text-red-500"
-                >
-                  Select gender
-                </span>
-              ) : (
-                ""
-              )} */}
             </div>
 
             {/* Weight on purchase */}
