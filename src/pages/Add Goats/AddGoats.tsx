@@ -22,6 +22,7 @@ const AddGoats = () => {
     ageOnPurchase: null,
     dateOfEntryOnFarm: null,
     dateOfBirth: null,
+    purchasePrice: null,
   });
   const {
     breed,
@@ -36,6 +37,7 @@ const AddGoats = () => {
     ageOnPurchase,
     dateOfEntryOnFarm,
     dateOfBirth,
+    purchasePrice,
   } = goat;
 
   useEffect(() => {
@@ -63,8 +65,6 @@ const AddGoats = () => {
     //   return data[item].tagNo === fatherTagNo
     // })
 
-
-
     const newGoatData = {
       breed: goat.breed,
       tagNo: newTagNo,
@@ -78,6 +78,7 @@ const AddGoats = () => {
       ageOnPurchase: goat.ageOnPurchase,
       dateOfEntryOnFarm: goat.dateOfEntryOnFarm,
       dateOfBirth: goat.dateOfBirth,
+      purchasePrice: goat.purchasePrice,
     };
 
     if (howGoatObtained === "Born on farm") {
@@ -92,7 +93,6 @@ const AddGoats = () => {
       ) {
         toast.error("Error occured");
         setError(true);
-
       } else {
         fireDB.child("goat-test").push(newGoatData, (err: any) => {
           if (err) {
@@ -116,6 +116,7 @@ const AddGoats = () => {
           ageOnPurchase: null,
           dateOfEntryOnFarm: null,
           dateOfBirth: null,
+          purchasePrice: null,
         });
       }
       toast.error("Error occured");
@@ -152,6 +153,7 @@ const AddGoats = () => {
           ageOnPurchase: null,
           dateOfEntryOnFarm: null,
           dateOfBirth: null,
+          purchasePrice: null,
         });
       }
     } else {
@@ -163,7 +165,6 @@ const AddGoats = () => {
     const { name, value } = e.target;
     setGoat({ ...goat, [name]: value });
   };
-
 
   return (
     <div className="md:col-span-2 md:mt-0">
@@ -189,7 +190,9 @@ const AddGoats = () => {
                 value={howGoatObtained || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
-                <option disabled value="">Select how goat was obtained</option>
+                <option disabled value="">
+                  Select how goat was obtained
+                </option>
                 <option>Born on farm</option>
                 <option>Purchased</option>
               </select>
@@ -209,7 +212,9 @@ const AddGoats = () => {
                 value={breed || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
-                <option disabled value="">Select Breed</option>
+                <option disabled value="">
+                  Select Breed
+                </option>
                 <option>Barbari</option>
                 <option>Osmanabadi</option>
                 <option>Sangamneri</option>
@@ -251,7 +256,9 @@ const AddGoats = () => {
                 value={gender || ""}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
-                <option disabled value={''}>Select Gender</option>
+                <option disabled value={""}>
+                  Select Gender
+                </option>
                 <option>Male</option>
                 <option>Female</option>
               </select>
@@ -282,7 +289,7 @@ const AddGoats = () => {
                     htmlFor="dateOfEntryOnFarm"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Date of entry on farm{" "}
+                    Date of entry on farm
                     <span className="text-red-600">*</span>
                   </label>
                   <input
@@ -291,6 +298,22 @@ const AddGoats = () => {
                     id="dateOfEntryOnFarm"
                     // value={dateOfEntryOnFarm || ''}
                     onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                  <label
+                    htmlFor="purchasePrice"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Purchase Price <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="purchasePrice"
+                    id="purchasePrice"
+                    onChange={handleInputChange}
+                    value={purchasePrice || ""}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -333,7 +356,7 @@ const AddGoats = () => {
                     htmlFor="weightOnBorn"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Weight on born <span className="text-red-600">*</span>
+                    Weight on born (Kg) <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="number"
