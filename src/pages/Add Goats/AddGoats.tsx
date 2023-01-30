@@ -23,6 +23,7 @@ const AddGoats = () => {
     dateOfEntryOnFarm: null,
     dateOfBirth: null,
     purchasePrice: null,
+    locationShed: null,
   });
   const {
     breed,
@@ -38,6 +39,7 @@ const AddGoats = () => {
     dateOfEntryOnFarm,
     dateOfBirth,
     purchasePrice,
+    locationShed,
   } = goat;
 
   useEffect(() => {
@@ -55,15 +57,6 @@ const AddGoats = () => {
 
     let tagGender = gender === "Male" ? "M" : "F";
     let newTagNo = `${breed[0]}-${tagGender}-${tagNo}`;
-    // console.log(newTagNo, "newtag");
-
-    // const isFatherTag = Object.keys(data).filter((item) => {
-    //   return data[item].tagNo === fatherTagNo
-    // })
-
-    // const isFatherTag = Object.keys(data).filter((item) => {
-    //   return data[item].tagNo === fatherTagNo
-    // })
 
     const newGoatData = {
       breed: goat.breed,
@@ -71,7 +64,7 @@ const AddGoats = () => {
       gender: goat.gender,
       weightOnPurchase: goat.weightOnPurchase,
       weightOnBorn: goat.weightOnBorn,
-      howGoatObtained: "",
+      howGoatObtained: goat.howGoatObtained,
       buyingCost: goat.buyingCost,
       fatherTagNo: goat.fatherTagNo,
       motherTagNo: goat.motherTagNo,
@@ -79,7 +72,9 @@ const AddGoats = () => {
       dateOfEntryOnFarm: goat.dateOfEntryOnFarm,
       dateOfBirth: goat.dateOfBirth,
       purchasePrice: goat.purchasePrice,
+      locationShed: goat.locationShed,
     };
+
 
     if (howGoatObtained === "Born on farm") {
       if (
@@ -101,8 +96,6 @@ const AddGoats = () => {
             toast.success("Goat Added Successfully");
           }
         });
-        console.log(newGoatData);
-
         setGoat({
           breed: "",
           tagNo: "",
@@ -117,9 +110,9 @@ const AddGoats = () => {
           dateOfEntryOnFarm: null,
           dateOfBirth: null,
           purchasePrice: null,
+          locationShed: null,
         });
       }
-      toast.error("Error occured");
     } else if (howGoatObtained === "Purchased") {
       if (
         !tagNo ||
@@ -154,6 +147,7 @@ const AddGoats = () => {
           dateOfEntryOnFarm: null,
           dateOfBirth: null,
           purchasePrice: null,
+          locationShed: null,
         });
       }
     } else {
@@ -262,6 +256,23 @@ const AddGoats = () => {
                 <option>Male</option>
                 <option>Female</option>
               </select>
+            </div>
+
+            <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+              <label
+                htmlFor="locationShed"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Location/Shed 
+              </label>
+              <input
+                type="text"
+                name="locationShed"
+                id="locationShed"
+                onChange={handleInputChange}
+                value={locationShed || ""}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
             </div>
 
             {/* Weight on purchase */}

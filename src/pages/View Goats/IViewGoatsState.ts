@@ -3,4 +3,5 @@ export interface IViewGoatsState{
     searchedData : any
     searchInput : any
     searchId : any
+    isResult : any
 }

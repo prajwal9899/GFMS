@@ -23,6 +23,7 @@ export class ViewGoats extends React.Component<
       searchedData: {},
       searchInput: false,
       searchId: null,
+      isResult: false,
     };
   }
 
@@ -45,8 +46,12 @@ export class ViewGoats extends React.Component<
 
     if (result.length > 0) {
       this.setState({ searchInput: true });
+      this.setState({ isResult: false });
+    } else if (e.target.value === "") {
+      this.setState({ isResult: false });
     } else {
       this.setState({ searchInput: false });
+      this.setState({ isResult: true });
     }
 
     this.setState({ searchId: result[0] });
@@ -61,6 +66,9 @@ export class ViewGoats extends React.Component<
             type="text"
             onChange={this.onSearch}
           />
+          <span style={{ color: "red" }}>
+            {this.state.isResult ? "Search result not found" : ""}
+          </span>
         </div>
         <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
           {this.state.searchInput ? (

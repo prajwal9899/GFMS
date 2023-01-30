@@ -7,6 +7,7 @@ import { IGoatDetailsProps } from "./IGoatDetailsProps";
 import { IGoatDetailsState } from "./IGoatDetailsState";
 import FemaleGoat from "../../assets/FemaleGoat.png";
 import MaleGoat from "../../assets/MaleGoat.png";
+import { Checkbox, Form } from "antd";
 
 type goatSchema = {
   [key: string]: any;
@@ -18,6 +19,7 @@ export const GoatDetails = () => {
   const [goat, setGoat] = useState<goatSchema>({
     name: "",
   });
+  const [goatStatus, setGoatStatus] = useState("Select Status");
 
   useEffect(() => {
     fireDB
@@ -32,9 +34,70 @@ export const GoatDetails = () => {
       });
   }, [id]);
 
+  const handleInputChange = (e: any) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="container mx-auto mt-12">
       <div className="md:col-span-2 md:mt-0">
+        {/* Select status */}
+        {/* <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <label
+            htmlFor="breed"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Select Breed <span className="text-red-600">*</span>
+          </label>
+          <select
+            id="breed"
+            name="breed"
+            onChange={handleInputChange}
+            value={goatStatus || ""}
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          >
+            <option disabled value="">
+              Select Status
+            </option>
+            <option>Live</option>
+            <option>Sold</option>
+            <option>Dead</option>
+          </select>
+        </div> */}
+
+        {/* Ready to sell */}
+        {/* <div>
+          <div style={{ display: "flex" }}>
+            <p style={{ color: "red" }}>READY TO SELL</p>
+            <input type="checkbox" name="" id="" />
+          </div>
+          <div style={{ display: "flex" }}>
+            <input type="number" placeholder="Current Weight (Kg)*" />
+            <input type="number" placeholder="Selling Price (Rs)*" />
+          </div>
+        </div> */}
+
+        {/* Sold  */}
+        {/* <div>
+          <div>
+            <p>SOLD RECORD</p>
+          </div>
+          <div style={{ display: "flex" }}>
+            <input type="date" name="" id="" />
+            <input type="number" placeholder="Selling Price (Rs)*" />
+          </div>
+        </div> */}
+
+        {/* Dead */}
+        {/* <div>
+          <div>
+            <input type="date" name="" id="" />
+          </div>
+          <div>
+            <input type="text" placeholder="Reason" />
+          </div>
+        </div> */}
+
         <div className="overflow-hidden sm:rounded-md">
           <div className="px-4 py-5 sm:p-6">
             {/* Breed */}
