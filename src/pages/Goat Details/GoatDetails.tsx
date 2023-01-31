@@ -26,6 +26,8 @@ export const GoatDetails = () => {
       .child(`goat-test/${id}`)
       .get()
       .then((snapshot) => {
+   
+        
         if (snapshot.exists()) {
           setGoat({ ...snapshot.val() });
         } else {

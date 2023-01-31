@@ -3,12 +3,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyADwc1hU_Y02Z5RqbUfiCYBZXH4Djy838c",
-  authDomain: "goat-test-c1aac.firebaseapp.com",
-  projectId: "goat-test-c1aac",
-  storageBucket: "goat-test-c1aac.appspot.com",
-  messagingSenderId: "1070464133362",
-  appId: "1:1070464133362:web:36e5ecb9bc609b69b2486b",
+  apiKey: "AIzaSyDirwgyIiweBSBMDCTzrA4gHfpr0xfexxU",
+  authDomain: "goat-test-c849d.firebaseapp.com",
+  projectId: "goat-test-c849d",
+  storageBucket: "goat-test-c849d.appspot.com",
+  messagingSenderId: "183005596852",
+  appId: "1:183005596852:web:7e327e15b82717ceeb5be1"
 };
 
 // const app = initializeApp(firebaseConfig)

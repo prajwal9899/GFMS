@@ -13,6 +13,8 @@ const Homepage = () => {
   const [female, setFemale] = useState(0);
   useEffect(() => {
     fireDB.child("goat-test").on("value", (snapshot) => {
+      console.log(snapshot,'sna');
+      
       if (snapshot.val() !== null) {
         setData({ ...snapshot.val() });
         const Male = Object.keys(snapshot.val()).filter((item) => {
@@ -41,6 +43,8 @@ const Homepage = () => {
       },
     ],
   };
+
+  console.log(data,'val');
 
   return (
     <div style={{ width: "300px" }}>
